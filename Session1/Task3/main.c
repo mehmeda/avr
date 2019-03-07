@@ -7,6 +7,7 @@
 
 // F_CPU
 /* Define F_CPU here */
+#define F_CPU 3333333UL
 
 #include <avr/io.h>
 #include <util/delay.h>
@@ -14,9 +15,11 @@
 
 //LED
 /* Define the pins for the LED here */
-
+#define LED0 5
 //Button
 /* Define the pins for the button here */
+#define SW0 6
+
 
 int main(void)
 {
@@ -35,7 +38,8 @@ int main(void)
 	 * And similarly what PORTx.OUTSET, .OUTCLR and .OUTTGL do to PORTx.OUT 
 	 * (HINT: see chapter 15.5 of the datasheet)
 	*/
-
+	PORTF.DIR |= (1 << LED0);
+    PORTF.DIR |= (0 << SW0);
 
 	/*
 	* Do the following:
@@ -51,6 +55,10 @@ int main(void)
 		* you instead toggle between light on/off when the button is pressed (like a light switch):
 		* When the button is not pressed the light should hold it's current state.
 		*/
+        if (!(PORTF.IN & (1 << SW0))) {
+            PORTF.OUT ^= (1 << LED0);
+            _delay_ms(500); //bodge for bouncy buttons
+        }
     }
 }
 
