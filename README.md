@@ -1,2 +1,2 @@
-# AVR kurs
-Kode til AVR kurset. Til bruk for ATMega4809 Curiosity Nano
+# AVR
+Code for an AVR course. Meant for *ATMega4809 Curiosity Nano.
